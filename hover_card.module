@@ -1,0 +1,64 @@
+<?php
+
+/**
+ * Implements hook_init().
+ */
+function hover_card_init() {
+  $modulePath = drupal_get_path('module', 'hover_card');
+  drupal_add_js(array(
+    'hover_card' => array(
+      'path' => $modulePath,
+    ),
+  ), 'setting');
+}
+
+/**
+ * Implements hook_menu().
+ */
+function hover_card_menu() {
+  $items['hover-card'] = array(
+    'title' => 'Hover Card',
+    'page callback' => 'hover_card',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Implements hover_card().
+ *
+ * Here we'll fetch the values from $_GET[] request and then using json_encode() we'll encode those values.
+ */
+function hover_card() {
+  $id = $_GET['id'];
+  $user_fields = user_load($id);
+
+  $name = $user_fields->name;
+  $mail = $user_fields->mail;
+  $picture  = theme('image_style', array(
+    'style_name' => 'thumbnail',
+    'path' => !empty($user_fields->picture->uri)?$user_fields->picture->uri:variable_get('user_picture_default'),
+    'attributes' => array(
+      'style' => 'height:32px;width:32px;float:right;',
+      )
+    )
+  );
+
+  foreach ($user_fields->roles as $key => $value) {
+    if ($key != 2) {
+      $roles = ucwords($value);
+    }
+  }
+
+  $array = array(
+    'name' => $name,
+    'mail' => $mail,
+    'picture' => $picture,
+    'roles' => $roles,
+  );
+
+  $json = json_encode($array);
+  print_r($json);
+  exit;
+}
