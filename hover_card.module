@@ -34,16 +34,24 @@ function hover_card() {
   $id = $_GET['id'];
   $user_fields = user_load($id);
 
-  $name = $user_fields->name;
-  $mail = $user_fields->mail;
-  $picture  = theme('image_style', array(
-    'style_name' => 'thumbnail',
-    'path' => !empty($user_fields->picture->uri)?$user_fields->picture->uri:variable_get('user_picture_default'),
-    'attributes' => array(
-      'style' => 'height:32px;width:32px;float:right;',
+  if (isset($user_fields->name) && !empty($user_fields->name)) {
+    $name = $user_fields->name;
+  }
+  
+  if (isset($user_fields->mail) && !empty($user_fields->mail)) {
+    $mail = $user_fields->mail;
+  }
+
+  if (isset($user_fields->picture->uri) && !empty($user_fields->picture->uri)) {
+    $picture  = theme('image_style', array(
+      'style_name' => 'thumbnail',
+      'path' => $user_fields->picture->uri,
+      'attributes' => array(
+        'style' => 'height:32px;width:32px;float:right;',
+        )
       )
-    )
-  );
+    );
+  }  
 
   foreach ($user_fields->roles as $key => $value) {
     if ($key != 2) {
