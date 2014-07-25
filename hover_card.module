@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Provides Hover Card for all user links with "username" as their class.
+ */
+
+/**
  * Implements hook_init().
  */
 function hover_card_init() {
