@@ -55,7 +55,7 @@ function hover_card() {
       'attributes' => array(
         'style' => 'height:32px;width:32px;float:right;',
       ),
-     ),
+     )
     );
   }
 
