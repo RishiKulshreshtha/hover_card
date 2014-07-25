@@ -2,6 +2,7 @@
 
 /**
  * Implements hook_init().
+ *
  */
 function hover_card_init() {
   $module_path = drupal_get_path('module', 'hover_card');
