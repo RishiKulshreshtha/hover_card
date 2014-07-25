@@ -2,7 +2,6 @@
 
 /**
  * Implements hook_init().
- *
  */
 function hover_card_init() {
   $module_path = drupal_get_path('module', 'hover_card');
@@ -51,7 +50,7 @@ function hover_card() {
       'attributes' => array(
         'style' => 'height:32px;width:32px;float:right;',
       ),
-     )
+     ),
     );
   }
 
