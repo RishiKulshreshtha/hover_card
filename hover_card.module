@@ -3,7 +3,6 @@
 /**
  * Implements hook_init().
  */
-
 function hover_card_init() {
   $module_path = drupal_get_path('module', 'hover_card');
   drupal_add_js(array(
@@ -16,7 +15,6 @@ function hover_card_init() {
 /**
  * Implements hook_menu().
  */
-
 function hover_card_menu() {
   $items['hover-card'] = array(
     'title' => 'Hover Card',
@@ -33,7 +31,6 @@ function hover_card_menu() {
  * Here we'll fetch the values from $_GET[] request and then using json_encode()
  * we'll encode those values.
  */
-
 function hover_card() {
   $id = $_GET['id'];
   $user_fields = user_load($id);
