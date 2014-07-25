@@ -1,7 +1,7 @@
 (function($) {
     Drupal.behaviors.hover_card = {
         attach: function(context, settings) {
-            var modulePath = Drupal.settings.hover_card.path;
+            var module_path = Drupal.settings.hover_card.path;
             var hoverUserDetails = '<div class="hover-details"></div>';
             $("a.username").hovercard({
                 detailsHTML: hoverUserDetails,
@@ -16,7 +16,7 @@
                         },
                         beforeSend: function() {
                             $(".hover-details").empty();
-                            $(".hover-details").prepend('<p style="text-align: center"><img src="' + modulePath + '/images/ajax-loader.gif"></p>');
+                            $(".hover-details").prepend('<p style="text-align: center"><img src="' + module_path + '/images/ajax-loader.gif"></p>');
                         },
                         success: function(data) {
                             var obj = $.parseJSON(data);

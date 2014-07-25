@@ -4,10 +4,10 @@
  * Implements hook_init().
  */
 function hover_card_init() {
-  $modulePath = drupal_get_path('module', 'hover_card');
+  $module_path = drupal_get_path('module', 'hover_card');
   drupal_add_js(array(
     'hover_card' => array(
-      'path' => $modulePath,
+      'path' => $module_path,
     ),
   ), 'setting');
 }
@@ -28,7 +28,8 @@ function hover_card_menu() {
 /**
  * Implements hover_card().
  *
- * Here we'll fetch the values from $_GET[] request and then using json_encode() we'll encode those values.
+ * Here we'll fetch the values from $_GET[] request and then using json_encode()
+ * we'll encode those values.
  */
 function hover_card() {
   $id = $_GET['id'];
@@ -48,10 +49,10 @@ function hover_card() {
       'path' => $user_fields->picture->uri,
       'attributes' => array(
         'style' => 'height:32px;width:32px;float:right;',
-        )
-      )
+      ),
+     )
     );
-  }  
+  }
 
   foreach ($user_fields->roles as $key => $value) {
     if ($key != 2) {
