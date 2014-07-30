@@ -14,12 +14,12 @@
 ?>
 
 <div class="user-details">
-	<div class="user-image">
-	<?php
-	$user_picture = $details['picture'];
-	!empty($user_picture) ?	print_r($user_picture) : "";
-	?>
-	</div>
+  <div class="user-image">
+  <?php
+  $user_picture = $details['picture'];
+  !empty($user_picture) ?	print_r($user_picture) : "";
+  ?>
+  </div>
     <div class="user-name"><strong>Username:</strong><?php print $details['name']; ?></div>
     <div class="user-mail"><strong>Email:</strong><?php print $details['mail']; ?></div>
     <div class="user-role"><strong>Roles:</strong><?php print $details['roles']; ?></div>
