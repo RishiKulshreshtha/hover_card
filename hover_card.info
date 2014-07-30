@@ -2,5 +2,4 @@ name = Hover Card
 description = Provides user data while hovering the authenticated users.
 core = 7.x
 
-scripts[] = javascripts/jquery.hovercard.js
-scripts[] = javascripts/hover_card.js
+dependencies[] = libraries (2.x)

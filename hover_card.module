@@ -6,15 +6,42 @@
  */
 
 /**
+ * The minimum version of Hover Card required.
+ */
+define('HOVER_CARD_MIN_PLUGIN_VERSION', '1.0');
+
+/**
  * Implements hook_init().
  */
 function hover_card_init() {
   $module_path = drupal_get_path('module', 'hover_card');
-  drupal_add_js(array(
-    'hover_card' => array(
-      'path' => $module_path,
+  drupal_add_css($module_path . '/stylesheets/hover_card.css');
+  // Adding and initializing the Hover Card Plugin.
+  libraries_load('hover_card', $variant = NULL);
+  drupal_add_js($module_path . '/javascripts/hover_card.js');
+  drupal_add_js(array('hover_card' => array('module_path' => $module_path)), array('type' => 'setting', 'scope' => JS_DEFAULT));
+}
+
+/**
+ * Implements hook_libraries_info().
+ */
+function hover_card_libraries_info() {
+  $libraries['hover_card'] = array(
+    'name' => 'Hover Card Plugin',
+    'vendor url' => 'http://designwithpc.com/Plugins/Hovercard',
+    'download url' => 'https://github.com/prashantchaudhary/hovercard/archive/master.zip',
+    'version arguments' => array(
+      'file' => 'jquery.hovercard.js',
+      'pattern' => '@[\s\S]*(?<=Version )([0-9.]+)@',
     ),
-  ), 'setting');
+    'files' => array(
+      'js' => array(
+        'jquery.hovercard.min.js',
+      ),
+    ),
+  );
+
+  return $libraries;
 }
 
 /**
@@ -38,6 +65,7 @@ function hover_card_menu() {
  */
 function hover_card() {
   $id = $_GET['id'];
+  $picture = array();
   $user_fields = user_load($id);
 
   if (isset($user_fields->name) && !empty($user_fields->name)) {
@@ -52,9 +80,6 @@ function hover_card() {
     $picture  = theme('image_style', array(
       'style_name' => 'thumbnail',
       'path' => $user_fields->picture->uri,
-      'attributes' => array(
-        'style' => 'height:32px;width:32px;float:right;',
-      ),
      )
     );
   }
@@ -72,7 +97,19 @@ function hover_card() {
     'roles' => $roles,
   );
 
-  $json = json_encode($array);
-  print_r($json);
-  exit;
+  return theme('hover_card_template', array('details' => $array));
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * Render some basic output for this module.
+ */
+function hover_card_theme($existing, $type, $theme, $path) {
+  return array(
+    'hover_card_template' => array(
+      'render element' => 'elements',
+      'template' => '/templates/hover-card-template',
+    ),
+  );
 }
