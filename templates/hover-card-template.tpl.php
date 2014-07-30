@@ -10,7 +10,6 @@
  * - $details['mail']: Use this to display the registered e-mail of the user.
  * - $details['picture']: Array which can be used to display picture of the user
  * - $details['role']: Use this to display the role of the user.
- *
  */
 ?>
 
@@ -18,9 +17,7 @@
 	<div class="user-image">
 	<?php
 	$user_picture = $details['picture'];
-	if (isset($user_picture) && !empty($user_picture)) {
-		print_r($user_picture);
-	}
+	!empty($user_picture) ?	print_r($user_picture) : "";
 	?>
 	</div>
     <div class="user-name"><strong>Username:</strong><?php print $details['name']; ?></div>
