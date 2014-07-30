@@ -14,18 +14,17 @@ https://github.com/prashantchaudhary/hovercard
 
 -- REQUIREMENTS --
 
-* None.
+  - Libraries Module 2.x (https://www.drupal.org/project/libraries)
 
 -- INSTALLATION --
 
-* Install as usual, see https://www.drupal.org/node/1294804 for further
-information.
+  - You need to download the Hover Card Plugin 
+  (https://github.com/prashantchaudhary/hovercard/archive/master.zip), extract
+  the archive and place the hover_card directory in the 
+  sites/all/libraries/hover_card directory on your server.
+  - Install as usual, see https://www.drupal.org/node/1294804 for further
+  information.
 
--- CONFIGURATION --
+-- MAINTAINERS --
 
-* None.
-
--- CONTACT --
-
-Current maintainers:
-* Rishi B. Kulshreshtha (Rishi Kulshreshtha) - https://drupal.org/user/1403808
+  - Rishi B. Kulshreshtha (Rishi Kulshreshtha) - https://drupal.org/user/1403808
