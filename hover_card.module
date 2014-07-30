@@ -18,7 +18,8 @@ function hover_card_init() {
   drupal_add_css($module_path . '/stylesheets/hover_card.css');
 
   // Adding and initializing the Hover Card Plugin.
-  libraries_load('hover_card', $variant = NULL);
+  $hover_card = 'hover_card';
+  libraries_load($hover_card);
   drupal_add_js($module_path . '/javascripts/hover_card.js');
   drupal_add_js(array('hover_card' => array('module_path' => $module_path)), array('type' => 'setting', 'scope' => JS_DEFAULT));
 }
