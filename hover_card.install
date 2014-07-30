@@ -26,8 +26,11 @@ function hover_card_requirements($phase) {
         'severity' => REQUIREMENT_ERROR,
         'description' => $t('!error You need to download the !hover_card, 
         extract the archive and place the hover_card directory in the %path 
-        directory on your server.', array('!error' => $error_message, 
-        '!hover_card' => l($t('Hover Card Plugin'), $library['download url']),
+        directory on your server.', array(
+          '!error' => $error_message,
+          '!hover_card' => l($t('Hover Card Plugin'),
+          $library['download url']
+        ),
         '%path' => 'sites/all/libraries')),
       );
     }
