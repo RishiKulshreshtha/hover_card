@@ -74,6 +74,9 @@ function hover_card_menu() {
  */
 function hover_card($user_fields) {
   $picture = array();
+  $name = "";
+  $mail = "";
+  $roles = "";
 
   if (isset($user_fields->name) && !empty($user_fields->name)) {
     $name = $user_fields->name;
