@@ -24,7 +24,7 @@
   <div class="user-role"><strong>Roles: </strong><?php print $details['roles']; ?></div>
 </div>
 <?php
-/**
+/*
  * We need to prevent the system from calling drupal_page_footer() as its going
  * to include the footer which is included along with card theme. In result
  * disturbing the hover card.

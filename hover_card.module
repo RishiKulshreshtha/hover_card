@@ -69,8 +69,8 @@ function hover_card_menu() {
 /**
  * Implements hover_card().
  *
- * Here we'll use the "Drupal Magic" to fetch the user data via Menu System %user
- * argument and then we'll return those values to our template file.
+ * Here we'll use the "Drupal Magic" to fetch the user data via Menu System
+ * %user argument and then we'll return those values to our template file.
  */
 function hover_card($user) {
   $picture = array();
@@ -91,13 +91,13 @@ function hover_card($user) {
      )
     );
   }
-  
+
   foreach ($user->roles as $key => $value) {
-    /** 
+    /*
      * In Drupal for Authenticated User the default ID is set to [2], since the
      * hover card is going to work only for the Authenticated User indeed we're
      * not willing to show the users that they are Authenticated User too. Hence
-     * we're disabling [2] => authenticated user from our list. 
+     * we're disabling [2] => authenticated user from our list.
      */
     if ($key != 2) {
       $roles = $value;

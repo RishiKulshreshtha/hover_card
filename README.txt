@@ -80,4 +80,4 @@ CONFIGURATION
 MAINTAINERS
 -----------
 Current maintainers:
- * Rishi B. Kulshreshtha (Rishi Kulshreshtha) - https://www.drupal.org/user/1403808
+ * Rishi B. Kulshreshtha - https://www.drupal.org/user/1403808
