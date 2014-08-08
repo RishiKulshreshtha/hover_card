@@ -9,7 +9,7 @@
       var hoverUserDetails = '<div class="hover-details"></div>';
       // Declaring the variable 'hoverUserDetails', it holds the initiating HTML tag useful for the Hovercard JS plugin.
       $("a.username").hovercard({
-      // Targetting 'hovercard' function for all anchor tags with 'username' as their class. This function will initiate the 'hovercard' function from the Hovercard JS file.
+      // Targeting 'hovercard' function for all anchor tags with 'username' as their class. This function will initiate the 'hovercard' function from the Hovercard JS file.
         detailsHTML: hoverUserDetails,
         width: 250,
         onHoverIn: function() {
