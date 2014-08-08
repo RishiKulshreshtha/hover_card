@@ -26,7 +26,7 @@
 <?php
 /*
  * We need to prevent the system from calling drupal_page_footer() as its going
- * to include the footer which is included along with card theme. In result
+ * to include the footer which is not required with card theme. Also its 
  * disturbing the hover card.
  */
 drupal_exit();
