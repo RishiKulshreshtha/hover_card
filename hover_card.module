@@ -69,34 +69,38 @@ function hover_card_menu() {
 /**
  * Implements hover_card().
  *
- * Here we'll fetch the values from $_GET[] request and then using json_encode()
- * we'll encode those values.
+ * Here we'll use the "Drupal Magic" to fetch the user data via Menu System %user
+ * argument and then we'll return those values to our template file.
  */
-function hover_card($user_fields) {
+function hover_card($user) {
   $picture = array();
-  $name = "";
-  $mail = "";
-  $roles = "";
+  $name = $mail = $roles = "";
 
-  if (isset($user_fields->name) && !empty($user_fields->name)) {
-    $name = $user_fields->name;
+  if (isset($user->name) && !empty($user->name)) {
+    $name = $user->name;
   }
 
-  if (isset($user_fields->mail) && !empty($user_fields->mail)) {
-    $mail = $user_fields->mail;
+  if (isset($user->mail) && !empty($user->mail)) {
+    $mail = $user->mail;
   }
 
-  if (isset($user_fields->picture->uri) && !empty($user_fields->picture->uri)) {
+  if (isset($user->picture->uri) && !empty($user->picture->uri)) {
     $picture  = theme('image_style', array(
       'style_name' => 'thumbnail',
-      'path' => $user_fields->picture->uri,
+      'path' => $user->picture->uri,
      )
     );
   }
-
-  foreach ($user_fields->roles as $key => $value) {
+  
+  foreach ($user->roles as $key => $value) {
+    /** 
+     * In Drupal for Authenticated User the default ID is set to [2], since the
+     * hover card is going to work only for the Authenticated User indeed we're
+     * not willing to show the users that they are Authenticated User too. Hence
+     * we're disabling [2] => authenticated user from our list. 
+     */
     if ($key != 2) {
-      $roles = ($value);
+      $roles = $value;
     }
   }
 
@@ -113,7 +117,7 @@ function hover_card($user_fields) {
 /**
  * Implements hook_theme().
  *
- * Render some basic output for this module.
+ * This will render some basic output for this module.
  */
 function hover_card_theme($existing, $type, $theme, $path) {
   return array(

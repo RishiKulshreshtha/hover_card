@@ -1,30 +1,83 @@
--- SUMMARY --
+
+CONTENTS OF THIS FILE
+---------------------
+
+ * Introduction
+ * Requirements
+ * Installation
+ * Configuration
+ * Troubleshooting
+ * FAQ
+ * Maintainers
+
+
+INTRODUCTION
+------------
 
 Hovercard is a module which is based on hovercard, a free light weight jQuery
 plugin that enables you to display related information with the hovered label,
 link, or any html element of your choice. This module extends Drupal to provide
 Hovercard for the users of the website.
 
-  - Easy to install and use.
-  - Works on all user links with "username" as their class.
-  - Simply install it and see the magic!
+ * For a full description of the module, visit the project page:
+   https://www.drupal.org/node/2308117
 
-Special thanks to Prashant Chaudhary for such a charming jQuery Plugin
-https://github.com/prashantchaudhary/hovercard
+ * To submit bug reports and feature suggestions, or to track changes:
+   https://www.drupal.org/node/2308911
 
--- REQUIREMENTS --
 
-  - Libraries Module 2.x (https://www.drupal.org/project/libraries)
+REQUIREMENTS
+------------
 
--- INSTALLATION --
+ * Libraries Module - 2.x
+   https://www.drupal.org/project/libraries
 
-  - You need to download the Hover Card Plugin 
-  (https://github.com/prashantchaudhary/hovercard/archive/master.zip), extract
-  the archive and place the hover_card directory in the 
-  sites/all/libraries/hover_card directory on your server.
-  - Install as usual, see https://www.drupal.org/node/1294804 for further
-  information.
+ * jQuery Hovercard Plugin - v1.0
+   https://github.com/prashantchaudhary/hovercard/archive/master.zip
+   Please visit https://github.com/prashantchaudhary/hovercard/ for jQuery
+   Hovercard Plugin's page.
 
--- MAINTAINERS --
 
-  - Rishi B. Kulshreshtha (Rishi Kulshreshtha) - https://drupal.org/user/1403808
+INSTALLATION
+------------
+
+ * The hover_card.module is very similar to other Drupal modules which requires
+   Libraries Module to use 3rd party code integration. Hence, for installation
+   of the Hover Card module please follow the below mentioned steps:
+
+ * Install as usual, see https://www.drupal.org/node/1294804 for further
+   information.
+
+ * Download and install the Libraries Module - 2.x from
+   https://www.drupal.org/project/libraries and after the module installation
+   create a new folder called 'libraries' under your sites/all/ folder.
+   (Creating this folder will help us to locate our 3rd party code integration.)
+
+ * Download the compressed version of jQuery Hovercard Plugin from
+   https://github.com/prashantchaudhary/hovercard/archive/master.zip
+   and extract the files into sites/all/libraries/hover_card/
+
+ * Now, in your sites/all/modules/sandbox/ directory download the Hover Card
+   module using GIT clone code provide on https://www.drupal.org/node/2308911
+   in the "Clone Repository" section.
+
+ * Enable the Hover Card module.
+
+
+CONFIGURATION
+-------------
+
+ * After enabling it please check your admin/reports/status where there should a
+   new option showing Hover Card Plugin - v1.0 installed with a success (Green)
+   status.
+
+ * This module has no menu or modifiable settings. There is no configuration.
+   When enabled and configured properly, this module will display the hover card
+   to the user links with 'username' as class to their anchor tags. To disable
+   the hover card from user links, disable the module and clear caches.
+
+
+MAINTAINERS
+-----------
+Current maintainers:
+ * Rishi B. Kulshreshtha (Rishi Kulshreshtha) - https://www.drupal.org/user/1403808

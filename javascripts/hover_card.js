@@ -1,15 +1,19 @@
+/**
+ * @file
+ * Javascript and jQuery functions which are useful for the hover_card module.
+ */
+
 (function($) {
   Drupal.behaviors.hover_card = {
     attach: function(context, settings) {
-      console.log(Drupal.settings.hover_card.name);
-      var hoverUserDetails = '<div class="hover-details"></div>';
-      $("a.username").hovercard({
+      var hoverUserDetails = '<div class="hover-details"></div>'; // Declaring the variable 'hoverUserDetails', it holds the initiating HTML tag useful for the Hovercard JS plugin.
+      $("a.username").hovercard({ // Targetting 'hovercard' function for all anchor tags with 'username' as their class. This function will initiate the 'hovercard' function from the Hovercard JS file.
         detailsHTML: hoverUserDetails,
         width: 250,
         onHoverIn: function() {
-          var module_path = Drupal.settings.hover_card.module_path;
-          var hover_details = $(".hover-details");
-          var user_id = $(this).find("a").attr("href").split("/");
+          var module_path = Drupal.settings.hover_card.module_path; // Declaring module_path as variable for Hover Card module path which is required for fetching the loader image path from the Hover Card module directory.
+          var hover_details = $(".hover-details"); // Declaring this as a variable for efficiency as its used multiple times.
+          var user_id = $(this).find("a").attr("href").split("/"); // We'll store the User ID in this variable
           $.ajax({
             url: Drupal.settings.basePath + "hover-card/" + user_id[3],
             beforeSend: function() {
