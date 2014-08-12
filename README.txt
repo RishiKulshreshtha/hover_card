@@ -67,9 +67,9 @@ INSTALLATION
 CONFIGURATION
 -------------
 
- * After enabling it please check your admin/reports/status where there should a
-   new option showing Hover Card Plugin - v1.0 installed with a success (green)
-   status.
+ * After enabling it please check your admin/reports/status where there should
+   be a new option showing Hover Card Plugin - v1.0 installed with a success
+   (green) status.
 
  * This module has no menu or modifiable settings. There is no configuration.
    When enabled and configured properly, this module will display the hover card
