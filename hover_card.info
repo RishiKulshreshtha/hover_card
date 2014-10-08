@@ -1,5 +1,6 @@
 name = Hover Card
 description = Provides user data while hovering the authenticated users.
 core = 7.x
+configure = admin/config/people/hover-card
 
 dependencies[] = libraries (2.x)
