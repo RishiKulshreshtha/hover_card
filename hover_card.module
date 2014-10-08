@@ -144,7 +144,7 @@ function hover_card($user) {
     $name = $user->name;
   }
 
-  if (isset($user->mail) && !empty($user->mail) && variable_get('user_email_display_status', TRUE)) {
+  if (isset($user->mail) && !empty($user->mail) && variable_get('hover_card_user_email_display_status', TRUE)) {
     $mail = $user->mail;
   }
 
