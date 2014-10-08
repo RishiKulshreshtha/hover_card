@@ -49,7 +49,7 @@ function hover_card_init() {
   if (user_is_logged_in()) {
     // Declaring Variables.
     $hover_card = 'hover_card';
-    
+
     // Initializing the Hover Card Plugin from Libraries.
     libraries_load($hover_card);
   }
