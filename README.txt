@@ -67,10 +67,11 @@ CONFIGURATION
    be a new option showing Hover Card Plugin - v1.0 installed with a success
    (green) status.
 
- * This module has no menu or modifiable settings. There is no configuration.
-   When enabled and configured properly, this module will display the hover card
-   to the user links with 'username' as class to their anchor tags. To disable
-   the hover card from user links, disable the module and clear caches.
+ * This module has menu or modifiable settings. There is configuration link for
+   this which you can access at admin/config/people/hover-card. When enabled and
+   configured properly, this module will display the hover card to the user
+   links with 'username' as class to their anchor tags. To disable the hover
+   card from user links, disable the module and clear caches.
 
 
 MAINTAINERS

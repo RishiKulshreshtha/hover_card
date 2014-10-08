@@ -20,7 +20,7 @@ function hover_card_settings() {
   );
   $form['personalization']['hover_card_user_email_display_status'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Enable Emails.'),
+    '#title' => t('Enable User Emails on Hover'),
     '#default_value' => variable_get('hover_card_user_email_display_status', TRUE),
   );
 
