@@ -96,8 +96,28 @@ function hover_card_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
-
+  $items['admin/config/people/hover-card'] = array(
+    'title' => 'Hover Card Settings',
+    'description' => 'Control default behavior of Hover Card, whether to display the Email adress of the users or not.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hover_card_settings'),
+    'access arguments' => array('hover card config'),
+    'file' => 'hover_card.admin.inc',
+    'weight' => 0,
+  );
   return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function hover_card_permission() {
+  // Set permission for managing module configurations.
+  return array(
+    'hover card config' => array(
+      'title' => t('Display Hover Card to Users.'),
+    ),
+  );
 }
 
 /**
@@ -114,7 +134,7 @@ function hover_card($user) {
     $name = $user->name;
   }
 
-  if (isset($user->mail) && !empty($user->mail)) {
+  if (isset($user->mail) && !empty($user->mail) && variable_get('user_email_display_status', TRUE)) {
     $mail = $user->mail;
   }
 

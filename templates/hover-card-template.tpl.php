@@ -20,7 +20,9 @@
   ?>
   </div>
   <div class="user-name"><strong>Username: </strong><?php print $details['name']; ?></div>
+  <?php if (variable_get('user_email_display_status', TRUE)): ?>
   <div class="user-mail"><strong>Email: </strong><a href="mailto:<?php print $details['mail']; ?>"><?php print $details['mail']; ?></a></div>
+  <?php endif; ?>
   <div class="user-role"><strong>Roles: </strong><?php print $details['roles']; ?></div>
 </div>
 <?php
