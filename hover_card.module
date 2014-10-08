@@ -49,10 +49,20 @@ function hover_card_init() {
   if (user_is_logged_in()) {
     // Declaring Variables.
     $hover_card = 'hover_card';
-    $module_path = drupal_get_path('module', 'hover_card');
-
+    
     // Initializing the Hover Card Plugin from Libraries.
     libraries_load($hover_card);
+  }
+}
+
+/**
+ * Implements hook_page_build().
+ */
+function hover_card_page_build(&$page) {
+  if (user_is_logged_in()) {
+    // Declaring Variables.
+    $hover_card = 'hover_card';
+    $module_path = drupal_get_path('module', 'hover_card');
 
     // Adding CSS.
     drupal_add_css($module_path . '/stylesheets/hover_card.css');
@@ -98,7 +108,7 @@ function hover_card_menu() {
   );
   $items['admin/config/people/hover-card'] = array(
     'title' => 'Hover Card Settings',
-    'description' => 'Control default behavior of Hover Card, whether to display the Email adress of the users or not.',
+    'description' => 'Control default behavior of Hover Card, whether to display the Email address of the users or not.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('hover_card_settings'),
     'access arguments' => array('hover card config'),

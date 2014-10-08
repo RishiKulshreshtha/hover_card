@@ -18,10 +18,10 @@ function hover_card_settings() {
     '#type' => 'fieldset',
     '#title' => t('Personalization'),
   );
-  $form['personalization']['user_email_display_status'] = array(
+  $form['personalization']['hover_card_user_email_display_status'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable Emails.'),
-    '#default_value' => variable_get('user_email_display_status', TRUE),
+    '#default_value' => variable_get('hover_card_user_email_display_status', TRUE),
   );
 
   return system_settings_form($form);
