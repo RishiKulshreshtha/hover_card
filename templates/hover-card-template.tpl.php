@@ -13,12 +13,14 @@
  */
 ?>
 <div class="user-details">
-  <div class="user-image">
   <?php
   $user_picture = $details['picture'];
-  !empty($user_picture) ?	print_r($user_picture) : "";
+  if (!empty($user_picture)):
   ?>
+  <div class="user-image">
+  <?php print_r($user_picture); ?>
   </div>
+  <?php endif; ?>
   <div class="user-name"><strong>Username: </strong><?php print $details['name']; ?></div>
   <?php if (variable_get('hover_card_user_email_display_status', TRUE)): ?>
   <div class="user-mail"><strong>Email: </strong><a href="mailto:<?php print $details['mail']; ?>"><?php print $details['mail']; ?></a></div>
