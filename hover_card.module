@@ -43,37 +43,6 @@ function hover_card_help($path, $arg) {
 }
 
 /**
- * Implements hook_init().
- */
-function hover_card_init() {
-  if (user_is_logged_in()) {
-    // Declaring Variables.
-    $hover_card = 'hover_card';
-
-    // Initializing the Hover Card Plugin from Libraries.
-    libraries_load($hover_card);
-  }
-}
-
-/**
- * Implements hook_page_build().
- */
-function hover_card_page_build(&$page) {
-  if (user_is_logged_in()) {
-    // Declaring Variables.
-    $hover_card = 'hover_card';
-    $module_path = drupal_get_path('module', 'hover_card');
-
-    // Adding CSS.
-    drupal_add_css($module_path . '/stylesheets/hover_card.css');
-
-    // Adding JS.
-    drupal_add_js($module_path . '/javascripts/hover_card.js');
-    drupal_add_js(array($hover_card => array('module_path' => $module_path)), array('type' => 'setting', 'scope' => JS_DEFAULT));
-  }
-}
-
-/**
  * Implements hook_libraries_info().
  */
 function hover_card_libraries_info() {
@@ -104,7 +73,9 @@ function hover_card_menu() {
     'page callback' => 'hover_card',
     'page arguments' => array(1),
     'access callback' => TRUE,
+    'access arguments' => array('access user profiles'),
     'type' => MENU_CALLBACK,
+    'delivery callback' => 'hover_card_ajax_callback',
   );
   $items['admin/config/people/hover-card'] = array(
     'title' => 'Hover Card Settings',
@@ -158,10 +129,10 @@ function hover_card($user) {
 
   foreach ($user->roles as $key => $value) {
     /*
-     * In Drupal for Authenticated User the default ID is set to [2], since the
-     * hover card is going to work only for the Authenticated User indeed we're
-     * not willing to show the users that they are Authenticated User too. Hence
-     * we're disabling [2] => authenticated user from our list.
+     * In Drupal, for Authenticated User the default ID is set to [2], since
+     * hover card is going to work only for the Authenticated Users as a result
+     * we have to disable it from getting displayed to the Unauthenticated Users
+     * Hence we're disabling [2] => authenticated user from our list.
      */
     if ($key != 2) {
       $roles = $value;
@@ -169,13 +140,41 @@ function hover_card($user) {
   }
 
   $user_data = array(
-    'name' => $name,
-    'mail' => $mail,
+    'name' => check_plain($name),
+    'mail' => check_plain($mail),
     'picture' => $picture,
-    'roles' => $roles,
+    'roles' => check_plain($roles),
   );
 
   return theme('hover_card_template', array('details' => $user_data));
+}
+
+/**
+ * Implements hover_card_ajax_callback().
+ */
+function hover_card_ajax_callback($html) {
+  // AJAX output.
+  print $html;
+  drupal_page_footer();
+}
+
+/**
+ * Implements template_preprocess_username().
+ */
+function hover_card_preprocess_username(&$variables){
+  // Declaring Variables.
+  $hover_card = 'hover_card';
+  $module_path = drupal_get_path('module', $hover_card);
+
+  // Initializing the Hover Card Plugin from Libraries.
+  libraries_load($hover_card);
+
+  // Adding CSS.
+  drupal_add_css($module_path . '/stylesheets/hover_card.css');
+
+  // Adding JS.
+  drupal_add_js($module_path . '/javascripts/hover_card.js');
+  drupal_add_js(array($hover_card => array('module_path' => $module_path)), array('type' => 'setting'));
 }
 
 /**
@@ -186,7 +185,7 @@ function hover_card($user) {
 function hover_card_theme($existing, $type, $theme, $path) {
   return array(
     'hover_card_template' => array(
-      'render element' => 'elements',
+      'variables' => array('details' => NULL),
       'template' => '/templates/hover-card-template',
     ),
   );

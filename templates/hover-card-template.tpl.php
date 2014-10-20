@@ -17,21 +17,13 @@
   $user_picture = $details['picture'];
   if (!empty($user_picture)):
   ?>
-  <div class="user-image">
-  <?php print_r($user_picture); ?>
-  </div>
+    <div class="user-image">
+    <?php print_r($user_picture); ?>
+    </div>
   <?php endif; ?>
-  <div class="user-name"><strong>Username: </strong><?php print $details['name']; ?></div>
+  <div class="user-name"><strong><?php print t('Username: '); ?></strong><?php print t($details['name']); ?></div>
   <?php if (variable_get('hover_card_user_email_display_status', TRUE)): ?>
-  <div class="user-mail"><strong>Email: </strong><a href="mailto:<?php print $details['mail']; ?>"><?php print $details['mail']; ?></a></div>
+    <div class="user-mail"><strong><?php print t('Email: '); ?></strong><a href="mailto:<?php print t($details['mail']); ?>"><?php print t($details['mail']); ?></a></div>
   <?php endif; ?>
-  <div class="user-role"><strong>Roles: </strong><?php print $details['roles']; ?></div>
+  <div class="user-role"><strong><?php print t('Roles: '); ?></strong><?php print t($details['roles']); ?></div>
 </div>
-<?php
-/*
- * We need to prevent the system from calling drupal_page_footer() as its going
- * to include the footer which is not required with card theme. Also its
- * disturbing the hover card.
- */
-drupal_exit();
-?>
