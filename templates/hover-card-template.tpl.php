@@ -21,9 +21,9 @@
     <?php print_r($user_picture); ?>
     </div>
   <?php endif; ?>
-  <div class="user-name"><strong><?php print t('Username: '); ?></strong><?php print t($details['name']); ?></div>
+  <div class="user-name"><strong><?php print t('Username:'); ?></strong><?php print t($details['name']); ?></div>
   <?php if (variable_get('hover_card_user_email_display_status', TRUE)): ?>
-    <div class="user-mail"><strong><?php print t('Email: '); ?></strong><a href="mailto:<?php print t($details['mail']); ?>"><?php print t($details['mail']); ?></a></div>
+    <div class="user-mail"><strong><?php print t('Email:'); ?></strong><a href="mailto:<?php print t($details['mail']); ?>"><?php print t($details['mail']); ?></a></div>
   <?php endif; ?>
-  <div class="user-role"><strong><?php print t('Roles: '); ?></strong><?php print t($details['roles']); ?></div>
+  <div class="user-role"><strong><?php print t('Roles:'); ?></strong><?php print t($details['roles']); ?></div>
 </div>

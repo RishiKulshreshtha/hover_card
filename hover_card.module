@@ -161,7 +161,7 @@ function hover_card_ajax_callback($html) {
 /**
  * Implements template_preprocess_username().
  */
-function hover_card_preprocess_username(&$variables){
+function hover_card_preprocess_username(&$variables) {
   // Declaring Variables.
   $hover_card = 'hover_card';
   $module_path = drupal_get_path('module', $hover_card);
