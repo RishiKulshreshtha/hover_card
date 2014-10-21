@@ -128,15 +128,7 @@ function hover_card($user) {
   }
 
   foreach ($user->roles as $key => $value) {
-    /*
-     * In Drupal, for Authenticated User the default ID is set to [2], since
-     * hover card is going to work only for the Authenticated Users as a result
-     * we have to disable it from getting displayed to the Unauthenticated Users
-     * Hence we're disabling [2] => authenticated user from our list.
-     */
-    if ($key != 2) {
-      $roles = $value;
-    }
+    $roles = $value;
   }
 
   $user_data = array(
@@ -186,7 +178,7 @@ function hover_card_theme($existing, $type, $theme, $path) {
   return array(
     'hover_card_template' => array(
       'variables' => array('details' => NULL),
-      'template' => '/templates/hover-card-template',
+      'template' => '/templates/hover-card',
     ),
   );
 }
