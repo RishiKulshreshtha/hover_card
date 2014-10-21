@@ -127,7 +127,7 @@ function hover_card($user) {
     );
   }
 
-  foreach ($user->roles as $key => $value) {
+  foreach ($user->roles as $value) {
     $roles = $value;
   }
 
