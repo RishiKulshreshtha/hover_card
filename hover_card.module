@@ -72,6 +72,7 @@ function hover_card_menu() {
     'title' => 'Hover Card',
     'page callback' => 'hover_card',
     'page arguments' => array(1),
+    'access arguments' => array('access user profiles'),
     'type' => MENU_CALLBACK,
     'delivery callback' => 'hover_card_ajax_callback',
   );
