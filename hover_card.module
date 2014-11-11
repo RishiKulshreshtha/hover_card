@@ -72,8 +72,6 @@ function hover_card_menu() {
     'title' => 'Hover Card',
     'page callback' => 'hover_card',
     'page arguments' => array(1),
-    'access callback' => TRUE,
-    'access arguments' => array('access user profiles'),
     'type' => MENU_CALLBACK,
     'delivery callback' => 'hover_card_ajax_callback',
   );
@@ -102,10 +100,10 @@ function hover_card_permission() {
 }
 
 /**
- * Implements hover_card().
+ * Returns HTML with hovered user details.
  *
- * Here we'll use the "Drupal Magic" to fetch the user data via Menu System
- * %user argument and then we'll return those values to our template file.
+ * @param array $user
+ *   Array with parameters for this action: depends on the trigger.
  */
 function hover_card($user) {
   $picture = array();
@@ -142,7 +140,10 @@ function hover_card($user) {
 }
 
 /**
- * Implements hover_card_ajax_callback().
+ * Page callback; Initiates when 'hover-card/%user' path is accessed.
+ *
+ * @param $html
+ *   Prints the values at the requested menu, such as hover-card/1.
  */
 function hover_card_ajax_callback($html) {
   // AJAX output.
