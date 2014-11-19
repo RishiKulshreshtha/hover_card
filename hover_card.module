@@ -143,7 +143,7 @@ function hover_card($user = array()) {
 /**
  * Page callback; Initiates when 'hover-card/%user' path is accessed.
  *
- * @param $html
+ * @param string $html
  *   Prints the values at the requested menu, such as hover-card/1.
  */
 function hover_card_ajax_callback($html) {
