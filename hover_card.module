@@ -106,7 +106,7 @@ function hover_card_permission() {
  * @param array $user
  *   Array with parameters for this action: depends on the trigger.
  */
-function hover_card($user) {
+function hover_card($user = array()) {
   $picture = array();
   $name = $mail = $roles = "";
 
