@@ -41,7 +41,7 @@ INSTALLATION
    Libraries Module to use 3rd party code integration. Hence, for installation
    of the Hover Card module please follow the below mentioned steps:
 
- * Install as usual, see https://www.drupal.org/node/1294804 for further
+ * Install as usual, see https://www.drupal.org/documentation/install/modules-themes/modules-7 for further
    information.
 
  * Download and install the Libraries Module - 2.x from
@@ -53,9 +53,8 @@ INSTALLATION
    https://github.com/prashantchaudhary/hovercard/archive/master.zip
    and extract the files into sites/all/libraries/hover_card/
 
- * Now, in your sites/all/modules/sandbox/ directory download the Hover Card
-   module using GIT clone code provide on https://www.drupal.org/node/2308911
-   in the "Clone Repository" section.
+ * Now, in your sites/all/modules/contrib/ directory download the Hover Card
+   module.
 
  * Enable the Hover Card module.
 
@@ -67,11 +66,11 @@ CONFIGURATION
    be a new option showing Hover Card Plugin - v1.0 installed with a success
    (green) status.
 
- * This module has menu or modifiable settings. There is configuration link for
-   this which you can access at admin/config/people/hover-card. When enabled and
-   configured properly, this module will display the hover card to the user
-   links with 'username' as class to their anchor tags. To disable the hover
-   card from user links, disable the module and clear caches.
+ * There is configuration link for this which you can access at
+   admin/config/people/hover-card. When enabled and configured properly, this
+   module will display the hover card to the user links with 'username' as class
+   to their anchor tags. To disable the hover card from user links, disable the
+   module and clear caches.
 
 
 MAINTAINERS

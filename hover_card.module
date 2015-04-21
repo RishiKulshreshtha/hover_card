@@ -85,6 +85,7 @@ function hover_card_menu() {
     'file' => 'hover_card.admin.inc',
     'weight' => 0,
   );
+
   return $items;
 }
 
@@ -95,7 +96,7 @@ function hover_card_permission() {
   // Set permission for managing module configurations.
   return array(
     'hover card config' => array(
-      'title' => t('Display Hover Card to Users.'),
+      'title' => t('Display Hover Card to Users'),
     ),
   );
 }
