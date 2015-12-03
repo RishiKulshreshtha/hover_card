@@ -7,9 +7,9 @@
   Drupal.behaviors.hover_card = {
     attach: function(context, settings) {
       var hover_user_details = '<div class="hover-details"></div>';
-        /* Declaring the variable 'hoverUserDetails', it holds the initiating HTML
-        tag useful for the Hovercard JS plugin. */
-        $("a.username").hovercard({
+      /* Declaring the variable 'hoverUserDetails', it holds the initiating HTML
+      tag useful for the Hovercard JS plugin. */
+      $("a.username").hovercard({
         /* Targeting 'hovercard' function for all anchor tags with 'username' as
         their class. This function will initiate the 'hovercard' function from the
         Hovercard JS file. */
