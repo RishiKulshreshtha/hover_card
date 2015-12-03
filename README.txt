@@ -45,13 +45,12 @@ INSTALLATION
    information.
 
  * Download and install the Libraries Module - 2.x from
-   https://www.drupal.org/project/libraries and after the module installation
-   create a new folder called 'libraries' under your sites/all/ folder.
-   (Creating this folder will help us to locate our 3rd party code integration.)
+   https://www.drupal.org/project/libraries.
 
  * Download the compressed version of jQuery Hovercard Plugin from
-   https://github.com/prashantchaudhary/hovercard/archive/master.zip
-   and extract the files into sites/all/libraries/hover_card/
+   https://github.com/prashantchaudhary/hovercard/archive/master.zip extract the
+   files jquery.hovercard.js and jquery.hovercard.min.js into
+   sites/all/libraries/hover_card/ 
 
  * Now, in your sites/all/modules/contrib/ directory download the Hover Card
    module.
