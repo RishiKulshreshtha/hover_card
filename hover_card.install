@@ -31,7 +31,8 @@ function hover_card_requirements($phase) {
           '!hover_card' => l($t('Hover Card Plugin'),
           $library['download url']
           ),
-          '%path' => 'sites/all/libraries')
+          '%path' => 'sites/all/libraries'
+          )
         ),
       );
     }
@@ -52,7 +53,8 @@ function hover_card_requirements($phase) {
         on your server.', array(
           '!hover_card' => l($t('Hover Card Plugin'),
           $library['download url']),
-          '%path' => $library['library path'])
+          '%path' => $library['library path']
+          )
         ),
       );
     }
