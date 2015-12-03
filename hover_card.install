@@ -32,8 +32,7 @@ function hover_card_requirements($phase) {
           $library['download url']
           ),
           '%path' => 'sites/all/libraries',
-          )
-        ),
+        )),
       );
     }
     elseif (version_compare($library['version'], HOVER_CARD_MIN_PLUGIN_VERSION, '>=')) {
@@ -54,8 +53,7 @@ function hover_card_requirements($phase) {
           '!hover_card' => l($t('Hover Card Plugin'),
           $library['download url']),
           '%path' => $library['library path'],
-          )
-        ),
+        )),
       );
     }
   }
