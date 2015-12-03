@@ -11,6 +11,7 @@
  * Form builder; Configure hover card settings for this site.
  *
  * @ingroup forms
+ *
  * @see system_settings_form()
  */
 function hover_card_settings() {

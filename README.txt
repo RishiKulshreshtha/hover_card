@@ -41,8 +41,7 @@ INSTALLATION
    Libraries Module to use 3rd party code integration. Hence, for installation
    of the Hover Card module please follow the below mentioned steps:
 
- * Install as usual, see https://www.drupal.org/documentation/install/modules-themes/modules-7 for further
-   information.
+ * Install as usual, see https://goo.gl/OTdd9P for further information.
 
  * Download and install the Libraries Module - 2.x from
    https://www.drupal.org/project/libraries.
