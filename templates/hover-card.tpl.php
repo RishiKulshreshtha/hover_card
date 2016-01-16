@@ -22,7 +22,11 @@
   </div>
   <?php endif; ?>
   <div class="user-name"><strong><?php print t('Username'); ?>:</strong> <?php print $details['name']; ?></div>
-  <?php if (variable_get('hover_card_user_email_display_status')): ?>
+  <?php // @FIXME
+// Could not extract the default value because it is either indeterminate, or
+// not scalar. You'll need to provide a default value in
+// config/install/hover_card.settings.yml and config/schema/hover_card.schema.yml.
+if (\Drupal::config('hover_card.settings')->get('hover_card_user_email_display_status')): ?>
   <div class="user-mail"><strong><?php print t('Email'); ?>:</strong> <a href="mailto:<?php print $details['mail']; ?>"><?php print $details['mail']; ?></a></div>
   <?php endif; ?>
   <div class="user-role"><strong><?php print t('Roles'); ?>:</strong> <?php print $details['roles']; ?></div>

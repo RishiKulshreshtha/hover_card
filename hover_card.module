@@ -115,16 +115,25 @@ function hover_card($user = array()) {
     $name = $user->name;
   }
 
-  if (isset($user->mail) && !empty($user->mail) && variable_get('hover_card_user_email_display_status', TRUE)) {
+  if (isset($user->mail) && !empty($user->mail) && \Drupal::config('hover_card.settings')->get('hover_card_user_email_display_status')) {
     $mail = $user->mail;
   }
 
   if (isset($user->picture->uri) && !empty($user->picture->uri)) {
-    $picture  = theme('image_style', array(
-      'style_name' => 'thumbnail',
-      'path' => $user->picture->uri,
-     )
-    );
+    // @FIXME
+// theme() has been renamed to _theme() and should NEVER be called directly.
+// Calling _theme() directly can alter the expected output and potentially
+// introduce security issues (see https://www.drupal.org/node/2195739). You
+// should use renderable arrays instead.
+// 
+// 
+// @see https://www.drupal.org/node/2195739
+// $picture  = theme('image_style', array(
+//       'style_name' => 'thumbnail',
+//       'path' => $user->picture->uri,
+//      )
+//     );
+
   }
 
   foreach ($user->roles as $value) {
@@ -132,13 +141,22 @@ function hover_card($user = array()) {
   }
 
   $user_data = array(
-    'name' => check_plain($name),
-    'mail' => check_plain($mail),
+    'name' => \Drupal\Component\Utility\SafeMarkup::checkPlain($name),
+    'mail' => \Drupal\Component\Utility\SafeMarkup::checkPlain($mail),
     'picture' => $picture,
-    'roles' => check_plain($roles),
+    'roles' => \Drupal\Component\Utility\SafeMarkup::checkPlain($roles),
   );
 
-  return theme('hover_card_template', array('details' => $user_data));
+  // @FIXME
+// theme() has been renamed to _theme() and should NEVER be called directly.
+// Calling _theme() directly can alter the expected output and potentially
+// introduce security issues (see https://www.drupal.org/node/2195739). You
+// should use renderable arrays instead.
+// 
+// 
+// @see https://www.drupal.org/node/2195739
+// return theme('hover_card_template', array('details' => $user_data));
+
 }
 
 /**
@@ -165,11 +183,35 @@ function hover_card_preprocess_username(&$variables) {
   libraries_load($hover_card);
 
   // Adding CSS.
-  drupal_add_css($module_path . '/stylesheets/hover_card.css');
+  // @FIXME
+// The Assets API has totally changed. CSS, JavaScript, and libraries are now
+// attached directly to render arrays using the #attached property.
+// 
+// 
+// @see https://www.drupal.org/node/2169605
+// @see https://www.drupal.org/node/2408597
+// drupal_add_css($module_path . '/stylesheets/hover_card.css');
+
 
   // Adding JS.
-  drupal_add_js($module_path . '/javascripts/hover_card.js');
-  drupal_add_js(array($hover_card => array('module_path' => $module_path)), array('type' => 'setting'));
+  // @FIXME
+// The Assets API has totally changed. CSS, JavaScript, and libraries are now
+// attached directly to render arrays using the #attached property.
+// 
+// 
+// @see https://www.drupal.org/node/2169605
+// @see https://www.drupal.org/node/2408597
+// drupal_add_js($module_path . '/javascripts/hover_card.js');
+
+  // @FIXME
+// The Assets API has totally changed. CSS, JavaScript, and libraries are now
+// attached directly to render arrays using the #attached property.
+// 
+// 
+// @see https://www.drupal.org/node/2169605
+// @see https://www.drupal.org/node/2408597
+// drupal_add_js(array($hover_card => array('module_path' => $module_path)), array('type' => 'setting'));
+
 }
 
 /**
