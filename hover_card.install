@@ -9,61 +9,20 @@
  * Implements hook_requirements().
  */
 function hover_card_requirements($phase) {
-  $requirements = array();
-
-  // Ensuring translations shouldn't break during installation.
-  $t = 't';
-
-  if ($phase == 'runtime') {
-    $library = libraries_detect('hover_card');
-    $error_type = isset($library['error']) ? \Drupal\Component\Utility\Unicode::ucfirst($library['error']) : '';
-    $error_message = isset($library['error message']) ? $library['error message'] : '';
-
-    if (empty($library['installed'])) {
-      // @FIXME
-// l() expects a Url object, created from a route name or external URI.
-// $requirements['hover_card_plugin'] = array(
-//         'title' => $t('Hover Card Plugin'),
-//         'value' => $t('@e: At least @a', array('@e' => $error_type, '@a' => HOVER_CARD_MIN_PLUGIN_VERSION)),
-//         'severity' => REQUIREMENT_ERROR,
-//         'description' => $t('!error You need to download the !hover_card,
-//         extract the archive and place the hover_card directory in the %path
-//         directory on your server.', array(
-//           '!error' => $error_message,
-//           '!hover_card' => l($t('Hover Card Plugin'),
-//           $library['download url']
-//           ),
-//           '%path' => 'sites/all/libraries',
-//         )),
-//       );
-
-    }
-    elseif (version_compare($library['version'], HOVER_CARD_MIN_PLUGIN_VERSION, '>=')) {
-      $requirements['hover_card_plugin'] = array(
-        'title' => $t('Hover Card Plugin'),
-        'severity' => REQUIREMENT_OK,
-        'value' => 'v' . $library['version'] . ' installed',
-      );
-    }
-    else {
-      // @FIXME
-// l() expects a Url object, created from a route name or external URI.
-// $requirements['hover_card_plugin'] = array(
-//         'title' => $t('Hover Card Plugin'),
-//         'value' => $t('At least @a', array('@a' => HOVER_CARD_MIN_PLUGIN_VERSION)),
-//         'severity' => REQUIREMENT_ERROR,
-//         'description' => $t('You need to download a later version of the
-//         !hover_card and replace the old version located in the %path directory
-//         on your server.', array(
-//           '!hover_card' => l($t('Hover Card Plugin'),
-//           $library['download url']),
-//           '%path' => $library['library path'],
-//         )),
-//       );
-
-    }
+  if ($phase != 'runtime') {
+    return array();
   }
 
+  $requirements = array();
+  $library = \Drupal::service('library.discovery')->getLibraryByName('hover_card', 'hover_card');
+  $library_exists = file_exists(DRUPAL_ROOT . '/' . $library['js'][0]['data']);
+
+  $requirements['hover_card_library_downloaded'] = array(
+    'title' => t('Hover Card Library'),
+    'value' => $library_exists ? t('Installed') : t('Not installed'),
+    'description' => $library_exists ? '' : t('The Hover Card library needs to be <a href="@url">downloaded</a> and extracted into the /libraries/hover_card folder in your Drupal installation directory.', ['@url' => 'https://github.com/prashantchaudhary/hovercard/archive/master.zip']),
+    'severity' => $library_exists ? REQUIREMENT_OK : REQUIREMENT_ERROR,
+  );
   return $requirements;
 }
 

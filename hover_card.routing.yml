@@ -1,7 +1,6 @@
 hover_card.hover_card:
   path: '/hover-card/{user}'
   defaults:
-    user: {  }
     _title: 'Hover Card'
     _controller: '\Drupal\hover_card\Controller\DefaultController::hover_card'
   requirements:

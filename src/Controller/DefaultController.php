@@ -1,4 +1,6 @@
-<?php /**
+<?php
+
+/**
  * @file
  * Contains \Drupal\hover_card\Controller\DefaultController.
  */
@@ -12,56 +14,49 @@ use Drupal\Core\Controller\ControllerBase;
  */
 class DefaultController extends ControllerBase {
 
-  public function hover_card(\Drupal\user\UserInterface $user = []) {
-    $picture = [];
-    $name = $mail = $roles = "";
+  public function hover_card(\Drupal\user\UserInterface $user = NULL) {
+    $name = $mail = $roles = $picture = "";
+    $name = $user->getAccountName();
 
-    if (!$user->getUsername() && $user->getUsername()) {
-      $name = $user->getUsername();
-    }
-
-    if (!$user->getEmail() && $user->getEmail() && \Drupal::config('hover_card.settings')->get('hover_card_user_email_display_status')) {
+    if ($user->getEmail() && \Drupal::config('hover_card.settings')->get('email_display_status_value')) {
       $mail = $user->getEmail();
     }
-
-    if (isset($user->picture->uri) && !empty($user->picture->uri)) {
-      // @FIXME
-// theme() has been renamed to _theme() and should NEVER be called directly.
-// Calling _theme() directly can alter the expected output and potentially
-// introduce security issues (see https://www.drupal.org/node/2195739). You
-// should use renderable arrays instead.
-// 
-// 
-// @see https://www.drupal.org/node/2195739
-// $picture  = theme('image_style', array(
-//       'style_name' => 'thumbnail',
-//       'path' => $user->picture->uri,
-//      )
-//     );
-
+//    if ($user->get('user_picture')->entity->url()) {
+//      $user_picture = $user->get('user_picture')->entity->url();
+//    }
+    $uid = $user->id();
+    if ($uid) {
+      $user_load = \Drupal\user\Entity\User::load($uid);
+      if (!empty($user_load->user_picture) && $user_load->user_picture->isEmpty() === FALSE) {
+        $image = $user_load->user_picture->first();
+        $rendered = \Drupal::service('renderer');
+//        @todo: Fix this
+//        Fatal error: Cannot use object of type Drupal\image\Plugin\Field\FieldType\ImageItem as array in C:\xampp\htdocs\drupal-8.2.5\core\lib\Drupal\Core\Render\Renderer.php on line 212
+//        ->renderPlain($image);
+      }
     }
 
-    foreach ($user->roles as $value) {
+    foreach ($user->getRoles() as $value) {
       $roles = $value;
     }
 
     $user_data = [
       'name' => \Drupal\Component\Utility\SafeMarkup::checkPlain($name),
       'mail' => \Drupal\Component\Utility\SafeMarkup::checkPlain($mail),
-      'picture' => $picture,
+//      'picture' => $user_picture,
       'roles' => \Drupal\Component\Utility\SafeMarkup::checkPlain($roles),
     ];
 
-    // @FIXME
-    // theme() has been renamed to _theme() and should NEVER be called directly.
-    // Calling _theme() directly can alter the expected output and potentially
-    // introduce security issues (see https://www.drupal.org/node/2195739). You
-    // should use renderable arrays instead.
-    // 
-    // 
-    // @see https://www.drupal.org/node/2195739
-    // return theme('hover_card_template', array('details' => $user_data));
+    $hover_card_template_build = array(
+      '#theme' => 'hover_card_template',
+      '#details' => $user_data,
+    );
 
+    $hover_card_template = drupal_render($hover_card_template_build);
+
+    return array(
+      '#markup' => $hover_card_template,
+    );
   }
 
 }

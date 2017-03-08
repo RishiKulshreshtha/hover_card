@@ -1,9 +1,8 @@
 name: 'Hover Card'
 description: 'Provides user data while hovering the authenticated users.'
+
+type: module
 core: 8.x
+
 dependencies:
   - 'libraries (2.x)'
-version: 8.x-1.0
-project: hover_card
-datestamp: '1449146948'
-type: module
