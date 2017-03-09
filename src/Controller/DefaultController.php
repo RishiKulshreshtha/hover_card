@@ -8,6 +8,9 @@
 namespace Drupal\hover_card\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\user\Entity\User;
+use Drupal\Component\Utility\SafeMarkup;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Default controller for the hover_card module.
@@ -26,7 +29,7 @@ class DefaultController extends ControllerBase {
 //    }
     $uid = $user->id();
     if ($uid) {
-      $user_load = \Drupal\user\Entity\User::load($uid);
+      $user_load = User::load($uid);
       if (!empty($user_load->user_picture) && $user_load->user_picture->isEmpty() === FALSE) {
         $image = $user_load->user_picture->first();
         $rendered = \Drupal::service('renderer');
@@ -41,10 +44,10 @@ class DefaultController extends ControllerBase {
     }
 
     $user_data = [
-      'name' => \Drupal\Component\Utility\SafeMarkup::checkPlain($name),
-      'mail' => \Drupal\Component\Utility\SafeMarkup::checkPlain($mail),
+      'name' => SafeMarkup::checkPlain($name),
+      'mail' => SafeMarkup::checkPlain($mail),
 //      'picture' => $user_picture,
-      'roles' => \Drupal\Component\Utility\SafeMarkup::checkPlain($roles),
+      'roles' => SafeMarkup::checkPlain($roles),
     ];
 
     $hover_card_template_build = array(
@@ -54,9 +57,9 @@ class DefaultController extends ControllerBase {
 
     $hover_card_template = drupal_render($hover_card_template_build);
 
-    return array(
-      '#markup' => $hover_card_template,
-    );
+    $response = new Response();
+    $response->setContent($hover_card_template);
+    return $response;
   }
 
 }

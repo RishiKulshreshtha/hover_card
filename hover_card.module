@@ -44,20 +44,7 @@ function hover_card_help($route_name, RouteMatchInterface $route_match) {
  */
 function hover_card_page_attachments(array &$page) {
   $page['#attached']['library'][] = 'hover_card/hover_card';
-  $page['#attached']['drupalSettings']['module_path'] = drupal_get_path('module', 'hover_card');;
-}
-
-/**
- * Page callback; Initiates when 'hover-card/%user' path is accessed.
- *
- * @param string $html
- * Prints the values at the requested menu, such as hover-card/1.
- * @todo Find D8 way for this!
- */
-function hover_card_ajax_callback($html) {
-  // AJAX output.
-  print $html;
-  drupal_page_footer();
+  $page['#attached']['drupalSettings']['module_path'] = drupal_get_path('module', 'hover_card');
 }
 
 /**

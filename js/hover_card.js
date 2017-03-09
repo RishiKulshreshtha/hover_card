@@ -28,7 +28,8 @@
           var user_id = $(this).find("a").attr("href").split("/");
           // We'll store the User ID in this variable.
           $.ajax({
-            url: base_path + "hover-card/" + user_id[3],
+            // This won't work if accessing site via. //localhost/sitename
+            url: base_path + "hover-card/" + user_id[2],
             beforeSend: function() {
               hover_details.empty();
               hover_details.prepend('<p style="text-align: center"><img src="' + base_path + module_path + '/images/ajax-loader.gif"></p>');
