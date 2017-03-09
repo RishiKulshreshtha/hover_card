@@ -25,7 +25,8 @@
           var hover_details = $(".hover-details");
           /* Declaring this as a variable for efficiency as its used multiple
           times. */
-          var user_id = $(this).find("a").attr("href").split("/");
+          var user_link = $(this).find("a").attr("href");
+          var user_id = user_link.replace(base_path, '/').split("/");
           // We'll store the User ID in this variable.
           $.ajax({
             // This won't work if accessing site via. //localhost/sitename
