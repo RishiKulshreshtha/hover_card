@@ -7,9 +7,9 @@
 
 namespace Drupal\hover_card\Controller;
 
+use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\user\Entity\User;
-use Drupal\Component\Utility\SafeMarkup;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -24,18 +24,11 @@ class DefaultController extends ControllerBase {
     if ($user->getEmail() && \Drupal::config('hover_card.settings')->get('email_display_status_value')) {
       $mail = $user->getEmail();
     }
-//    if ($user->get('user_picture')->entity->url()) {
-//      $user_picture = $user->get('user_picture')->entity->url();
-//    }
+
     $uid = $user->id();
     if ($uid) {
-      $user_load = User::load($uid);
-      if (!empty($user_load->user_picture) && $user_load->user_picture->isEmpty() === FALSE) {
-        $image = $user_load->user_picture->first();
-        $rendered = \Drupal::service('renderer');
-//        @todo: Fix this
-//        Fatal error: Cannot use object of type Drupal\image\Plugin\Field\FieldType\ImageItem as array in C:\xampp\htdocs\drupal-8.2.5\core\lib\Drupal\Core\Render\Renderer.php on line 212
-//        ->renderPlain($image);
+      if (!$user->user_picture->isEmpty()) {
+        $picture = $user->user_picture->view('thumbnail');
       }
     }
 
@@ -46,7 +39,7 @@ class DefaultController extends ControllerBase {
     $user_data = [
       'name' => SafeMarkup::checkPlain($name),
       'mail' => SafeMarkup::checkPlain($mail),
-//      'picture' => $user_picture,
+      'picture' => $picture,
       'roles' => SafeMarkup::checkPlain($roles),
     ];
 
