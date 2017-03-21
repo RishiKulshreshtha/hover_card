@@ -1,15 +1,10 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\hover_card\Controller\DefaultController.
- */
-
 namespace Drupal\hover_card\Controller;
 
 use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\user\Entity\User;
+use Drupal\user\UserInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -17,7 +12,10 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class DefaultController extends ControllerBase {
 
-  public function hover_card(\Drupal\user\UserInterface $user = NULL) {
+  /**
+   * {@inheritdoc}
+   */
+  public function hoverCard(UserInterface $user = NULL) {
     $name = $mail = $roles = $picture = "";
     $name = $user->getAccountName();
 
@@ -43,10 +41,10 @@ class DefaultController extends ControllerBase {
       'roles' => SafeMarkup::checkPlain($roles),
     ];
 
-    $hover_card_template_build = array(
+    $hover_card_template_build = [
       '#theme' => 'hover_card_template',
       '#details' => $user_data,
-    );
+    ];
 
     $hover_card_template = drupal_render($hover_card_template_build);
 

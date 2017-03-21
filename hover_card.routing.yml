@@ -2,7 +2,7 @@ hover_card.hover_card:
   path: '/hover-card/{user}'
   defaults:
     _title: 'Hover Card'
-    _controller: '\Drupal\hover_card\Controller\DefaultController::hover_card'
+    _controller: '\Drupal\hover_card\Controller\DefaultController::hoverCard'
   requirements:
     _permission: 'access user profiles'
 hover_card.settings:

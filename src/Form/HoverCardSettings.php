@@ -1,15 +1,13 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\hover_card\Form\HoverCardSettings.
- */
-
 namespace Drupal\hover_card\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
+/**
+ * Implements the Hover Card admin settings form.
+ */
 class HoverCardSettings extends ConfigFormBase {
 
   /**
@@ -26,6 +24,9 @@ class HoverCardSettings extends ConfigFormBase {
     return ['hover_card.settings'];
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('hover_card.settings');
 
