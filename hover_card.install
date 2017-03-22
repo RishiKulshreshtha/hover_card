@@ -30,5 +30,5 @@ function hover_card_requirements($phase) {
  * Implements hook_uninstall().
  */
 function hover_card_uninstall() {
-  \Drupal::config('hover_card.settings')->clear('hover_card_user_email_display_status')->save();
+  \Drupal::configFactory()->getEditable('hover_card.settings')->delete();
 }
