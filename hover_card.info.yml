@@ -7,4 +7,4 @@ core: 8.x
 configure: hover_card.settings
 
 dependencies:
-  - 'libraries (2.x)'
+  - drupal:libraries (2.x)
