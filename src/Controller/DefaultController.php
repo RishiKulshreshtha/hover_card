@@ -6,39 +6,11 @@ use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\user\UserInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Drupal\Core\Render\RendererInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Default controller for the hover_card module.
  */
 class DefaultController extends ControllerBase {
-
-  /**
-   * The renderer service.
-   *
-   * @var \Drupal\Core\Render\RendererInterface
-   */
-  protected $renderer;
-
-  /**
-   * Constructs a DefaultController object.
-   *
-   * @param \Drupal\Core\Render\RendererInterface $renderer
-   *   The renderer service.
-   */
-  public function __construct(RendererInterface $renderer) {
-    $this->renderer = $renderer;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('renderer')
-    );
-  }
 
   /**
    * {@inheritdoc}
@@ -47,7 +19,7 @@ class DefaultController extends ControllerBase {
     $name = $mail = $roles = $picture = "";
     $name = $user->getAccountName();
 
-    if ($user->getEmail() && $this->config('hover_card.settings')->get('email_display_status_value')) {
+    if ($user->getEmail() && \Drupal::config('hover_card.settings')->get('email_display_status_value')) {
       $mail = $user->getEmail();
     }
 
@@ -74,7 +46,7 @@ class DefaultController extends ControllerBase {
       '#details' => $user_data,
     ];
 
-    $hover_card_template = $this->renderer->render($hover_card_template_build);
+    $hover_card_template = drupal_render($hover_card_template_build);
 
     $response = new Response();
     $response->setContent($hover_card_template);
