@@ -120,10 +120,10 @@ function hover_card($user = array()) {
   }
 
   if (isset($user->picture->uri) && !empty($user->picture->uri)) {
-    $picture  = theme('image_style', array(
+    $picture = theme('image_style', array(
       'style_name' => 'thumbnail',
       'path' => $user->picture->uri,
-     )
+    )
     );
   }
 
