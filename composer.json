@@ -18,5 +18,11 @@
       "irc": "irc://irc.freenode.org/drupal-contribute",
       "source": "http://cgit.drupalcode.org/hover_card"
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    }
 }
